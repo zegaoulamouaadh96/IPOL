@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* Tokens and resets */
+html {
+  scroll-behavior: auto !important;
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+img, video {
+  user-select: none;
+  pointer-events: none;
+}
+
+::selection {
+  background-color: rgba(59, 130, 246, 0.35); /* Logo Blue Selection */
+  color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.15); /* Logo Blue scrollbar */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.3); /* Logo Red scrollbar on hover */
+}
+
+/* Background Ambient Glows */
+.bg-glow-blue {
+  position: fixed;
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(21, 101, 192, 0.08) 0%, transparent 60%);
+  filter: blur(80px);
+  top: -10vh;
+  left: -10vw;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-glow-red {
+  position: fixed;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(198, 40, 40, 0.06) 0%, transparent 60%);
+  filter: blur(90px);
+  bottom: -10vh;
+  left: 15vw;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Custom hover effects matching logo colors */
+.hover-glow-red:hover {
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+}
+
+.hover-glow-blue:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+}
+
+.hover-glow-gradient:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 20px rgba(239, 68, 68, 0.15) !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(239, 68, 68, 0.05)) !important;
+}
+
+/* --- BLOOM AI LANDING PAGE STYLES --- */
+.bloom-theme {
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-serif: 'Source Serif 4', serif;
+  --radius: 1rem;
+  font-family: 'Poppins', sans-serif;
+
+  /* Strict HSL variables matching logo colors */
+  --bloom-black: hsl(0, 0%, 0%);
+  --bloom-white: hsl(0, 0%, 100%);
+  --bloom-gray-100: hsl(0, 0%, 90%);
+  --bloom-gray-200: hsl(0, 0%, 80%);
+  --bloom-gray-300: hsl(0, 0%, 70%);
+  --bloom-gray-400: hsl(0, 0%, 60%);
+  --bloom-gray-50: hsl(0, 0%, 50%);
+
+  /* Custom adaptive cursor colors - matching logo blue */
+  --cursor-color: #3b82f6;
+  --cursor-color-alpha: rgba(59, 130, 246, 0.1);
+}
+
+.bloom-theme h1,
+.bloom-theme h2,
+.bloom-theme h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.bloom-theme em,
+.bloom-theme i,
+.bloom-theme .italic,
+.bloom-theme em * {
+  font-family: 'Source Serif 4', serif !important;
+  font-style: italic !important;
+}
+
+@layer components {
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius, 1rem);
+  }
+
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius, 1rem);
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      transparent 40%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .liquid-glass-strong {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: none;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius, 1rem);
+  }
+
+  .liquid-glass-strong::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius, 1rem);
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      transparent 40%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.2) 80%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
